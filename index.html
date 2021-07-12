@@ -4,11 +4,40 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <h1>subash poudel
-    </h1>
+    <title>My portfolio</title>
+    <style>
+        .main{
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-    
-</body>
+    <div class="main">
+    <img id="ProfileImage" alt="profile photo" height="100px" width="100px" >
+    <h2 id="fullName"></h2>
+    <p id="bio"></p>
+    <h5 id="followersInformation"></h5>
+    <p>
+        Check me on <a id="githubLink">Github</a>
+    </p>
+  
+    </div>
+
+    <script>
+        fetch("https://api.github.com/users/subash98124")
+        .then(response => response.json())
+        .then(function(data){
+            let followersCount = data['followers']
+            let followersInfo = `I have been followed by ${followersCount}   awsome people on Github`
+            console.log(data)
+            document.getElementById('ProfileImage').src = data['avatar_url']
+            document.getElementById('fullName').textContent = data['name']
+            document.getElementById('bio').textContent = data['bio']
+            document.getElementById('followersInformation').textContent =followersInfo
+            document.getElementById('githubLink').href = data['html_url']
+            
+        }
+        )
+    </script>
+</body> 
 </html>
