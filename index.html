@@ -67,11 +67,8 @@
                 <p class="twitter-heading" justify-content="center">My Projects</p>
             </div>
             <div>
-             <ol>
-                <li id="repo"></li>
-                <li></li>
-                <li></li>
-             </ol>
+                <b>Repo Detail</b>
+                <p id="repo_detail"  justify-content="center"></p>
             </div>
              
         </div>
@@ -104,9 +101,13 @@
         .then(call => call.json())
         .then(function(info){
             console.log(info)
-            let repoCount = data['repos_url']
-            let repoinfo = `These are my repositary ${repoCount}`
-            document.getElementById('repo').innerText=repoinfo
+                var output = '';
+
+            for (var property in info) {
+                output +=  'Repo Name: ' + info[property].name+'; <br>' + 'Repo Url: ' + info[property].html_url + '<br> <br> <br>';
+                }  
+
+                 document.getElementById('repo_detail').innerHTML  = JSON.stringify(output);
         }
         )
     </script>
