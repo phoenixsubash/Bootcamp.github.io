@@ -8,19 +8,81 @@
     <style>
         .main{
             text-align: center;
+            display: flex;
+            font-family: Arial, sans-serif;
+            justify-content: center;
+            background-color: #3c5a99;
+            color: antiquewhite;
+        }
+        .twitter-section{
+            text-align: center;
+        }
+        .twitter-timeline{
+            color: #fafafa;
+        }
+        #ProfileImage{
+            height: auto;
+            max-width: 100%;
+
+        }
+        .twitter-heading{
+            justify-content: center;
+            display: flex;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            font-size: 30px;
+            width: 30vw; 
+        }
+        .public-info{
+            width: 30vw; 
+        }
+        body{
+            max-width: 100%;
+            background-color: #3c5a99;
+        }
+        #div-tweet{
+            display: flex;
+        }
+        #githubLink{
+            color:#FCB849 ;
+            
         }
     </style>
 </head>
 <body>
     <div class="main">
-    <img id="ProfileImage" alt="profile photo" height="100px" width="100px" >
-    <h2 id="fullName"></h2>
-    <p id="bio"></p>
-    <h5 id="followersInformation"></h5>
-    <p>
-        Check me on <a id="githubLink">Github</a>
-    </p>
-  
+        <div>  
+
+           <div class="public-info">  
+                <img id="ProfileImage" alt="profile photo" height="100px" width="100px" >
+               <h2 id="fullName"></h2>
+               <p id="bio"></p>
+               <h5 id="followersInformation"></h5>
+               <p>Check me on <a id="githubLink">Github</a></p>
+           </div>
+
+        </div>
+        <div>
+
+            <div>
+                <p class="twitter-heading" justify-content="center">My Projects</p>
+            </div>
+            <div>
+             <ol>
+                <li id="repo"></li>
+                <li></li>
+                <li></li>
+             </ol>
+            </div>
+             
+        </div>
+       
+        <div class="twitter-section">
+            <p class="twitter-heading"><u></u>My Twitter Timeline</u> <p>
+            <a class="twitter-timeline" data-height="600" data-width="600" href="https://twitter.com/PhoenixSub119?ref_src=twsrc%5Etfw">Tweets by Subash Poudel</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+           <a href="https://twitter.com/intent/tweet?screen_name=phoenixsub119&ref_src=twsrc%5Etfw" class="twitter-mention-button" data-size="large" data-show-count="false">Tweet to @phoenixsub119</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+         </div>
+      
+
     </div>
 
     <script>
@@ -38,6 +100,16 @@
             
         }
         )
+        fetch("https://api.github.com/users/subash98124/repos")
+        .then(call => call.json())
+        .then(function(info){
+            console.log(info)
+            let repoCount = data['repos_url']
+            let repoinfo = `These are my repositary ${repoCount}`
+            document.getElementById('repo').innerText=repoinfo
+        }
+        )
     </script>
+
 </body> 
 </html>
